@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="pt-br">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Consulta CNPJ</title>
+</head>
+<body>
+    <div id="app">
+    <header>{{ titulo }}</header>
+
+    <form id="cnpj" v-on:submit.prevent.stop="enviar()">
+        <label>
+        <spam>CNPJ</spam>
+        <input type="text" size="16" placeholder="00.000.000/0000-00" :value="empresa.cnpj" maxlength="18" v-on:submit.prevent.stop="enviar()">
+        </label>
+        {{ info }}
+    </form>     
+    
+    </div>
+    <script src="http://unpkg.com/vue"></script>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                titulo: "Consulta de CPF",
+                empresa: {
+                    id: 1,
+                    nome: "Samsung",
+                    cnpj: "49.123.321/4234-99"
+                }
+            },
+            methods: {
+                enviar() {
+                    alert("oi");
+                }
+            },
+            mounted() {
+                axios.get('https://api.coindesk.com/v1/bpi/currentprice.json').then(response => (this.info = response))
+            }
+        });
+        
+    </script>
+
+</body>
+</html>
